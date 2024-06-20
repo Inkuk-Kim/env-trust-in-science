@@ -1,7 +1,6 @@
 ---
 title: "Trust in Science or Scientists Lead to Pro-environmental Attitudes"
 ##abstract: |
-##   Need to be written
 author: 
   - name: Inkuk Kim
     affiliation: Victoria University of Wellington, New Zealand
@@ -132,7 +131,10 @@ In this research, we aimed to investigate the causal effects of trust in science
 
 Trusting science and scientists is important for individuals' perception of climate change.
 When there is uncertainty, people can make rational decisions by collecting and evaluating all relevant information.
-This cognitive process requires time and energy, so people tend to rely on relevant actors' opinions as a mental shortcut for an efficient decision-making [e.g., @sturgis_trust_2021; @vanboven2021]. Regarding climate issues, governments, political leaders, media, and climate scientists are considered as relevant actors. Among them, climate scientists are the most relevant and expert actors in terms of evaluating the reality of climate change. Therefore, perceived scientific consensus on climate change influence individuals' perception of environmental issues and promote individuals' environmental behaviours [@vanderlinden2019; @vanderlinden2015].
+This cognitive process requires time and energy, so people tend to rely on relevant actors' opinions as a mental shortcut for an efficient decision-making [e.g., @sturgis_trust_2021; @vanboven2021].
+Regarding climate issues, governments, political leaders, media, and climate scientists are considered as relevant actors.
+Among them, climate scientists are the most relevant and expert actors in terms of evaluating the reality of climate change.
+Therefore, perceived scientific consensus on climate change influence individuals' perception of environmental issues and promote individuals' environmental behaviours [@vanderlinden2019; @vanderlinden2015].
 According to the Gateway Belief Model [@vanderlinden2015a], perceived scientific consensus affects belief in climate change, worry about climate change, and belief in human causation, which in turn increase support for public action.
 However, the effects of perceived scientific consensus on climate change may be ineffective when people do not trust science and scientists.
 Thus, trust in science and scientists is more essential than perceived scientific consensus on climate change for individuals' pro-environmental attitudes and behaviours.
@@ -160,8 +162,16 @@ We hypothesised that increasing either trust in science or trust in scientists w
 
 ### Sample
 
-We used data sets collected at three different periods from 2019 to 2022 (Time 0: 2019 to 2020, Time 1: 2020 to 2021, Time 2: 2021 to 2022) in the New Zealand Attitudes and Value Study (NZAVS), conducted across New Zealand since 2009.
-Among the sample during the period from 2019 to 2022, we will only select samples which do not have any missing values in exposures (i.e., trust in science and scientists) at Times 0 and 1.
+#### Target Population
+ target population was people living in New Zealand.
+ 
+ 
+We used data sets collected at three different periods from 2019 to 2022 (Time 0: 2019 to 2020, Time 1: 2020 to 2021, Time 2: 2021 to 2022) in the New Zealand Attitudes and Value Study (NZAVS), which conducted across New Zealand since 2009.
+Among the sample during the period from 2019 to 2022, we only selected samples which do not have any missing values in exposures (i.e., trust in science or scientists) at Times 0 and 1.
+Total samples involving trust in science or scientists were respectively 42,118 and 41,424.
+
+We imputed data for missing values at Time 0.
+sample description:baseline tables
 
 ### Measures
 
@@ -213,13 +223,32 @@ Respondents indicated the extent to which they received social support.
 Kessler's depression, Kessler's anxiety, and alert level were used to measure respondents' psychological symptoms.Personality.
 Mini-IPIP6 (agreeableness, conscientiousness, extraversion, honesty-humility, neuroticism) and modesty were measured to assess respondents' personality.
 
+### Causal Assumptions
+
+#### Causal Consistency
+
+#### Exchangeability
+
+#### Positivity
+
+Before conducting the main analyses, we checked the positivity assumption by investigating the transition of participants on the exposures from Time 00 to Time 00
+
 ### Analytic Approach
 
-Using the lmtp package [@williams_lmtp_2023] in R [@r_core_team_r_2024], we conducted the longitudinal modified treatment policies @diaz_nonparametric_2023 and outcome-wide analyses @vanderweele_outcome-wide_2020 to investigate whether trust in science and scientists respectively affect pro-environmental attitudes. We followed the practical guideline of @bulbulia_practical_2024 to apply these analytical approaches to this three-wave longitudinal study. Before conducting the main analyses, we checked the causal inference assumptions (i.e., causal consistency, positivity, and exchangeability). Subsequently, we imputed any missingness at Time 0. To adjust for confounding effects, we used the baseline variables, exposures and outcomes at Time 0. Attrition at Time 1 was controlled by weighting the sample and attrition at Time 2 was addressed by censoring input in LMTP function. At Time 1, we applied two interventions into each exposure (i.e., trust in science and trust in scientists): (1) shift those below average to average, otherwise do not shift; (2) shift 1 point on the response scale (1-7) up to maximum of 7. We assessed whether the changes in trust in science and scientists at Time 1 respectively significantly influenced belief in climate change, belief in anthropogenic climate change, concern about climate change, and satisfaction with New Zealand natural environment at Time 2. To estimate and identify optimum causal effects, we used super learner libraries , which conduct multiple machine learning algorithms (\`SL.glmnet\`, \`SL.ranger\`, and \`SL.xboost\`) and cross-validate the outputs. Lastly, as a sensitive analysis to assess the strengths of casual effects, we calculated E-values, which represent the extent to which identified causal associations can be removed by unmeasured confounding effects [@bulbulia_practical_2024; @vanderweele_outcome-wide_2020].
+Using the Targeted Minimum Loss-based Estimation (TMLE) function in the lmtp package [@williams_lmtp_2023] in R [@r_core_team_r_2024], we conducted the longitudinal modified treatment policies @diaz_nonparametric_2023 and outcome-wide analyses @vanderweele_outcome-wide_2020 to investigate whether trust in science and scientists respectively affect pro-environmental attitudes. We followed the practical guideline of @bulbulia_practical_2024 to apply these analytical approaches to this three-wave longitudinal study. To adjust for confounding effects on the relationships between exposures and outcomes, we included the baseline variables, exposures, and outcomes at Time 0 as baselines in the TMLE function. Attrition at Time 1 was accounted for by weighting the sample and attrition at Time 2 was addressed by censoring input in the TMLE function. At Time 1, we applied two interventions into each exposure (i.e., trust in science and trust in scientists): (1) shift those below average to average, otherwise do not shift; (2) shift 1 point on the response scale (1-7) up to maximum of 7. We assessed whether the changes in trust in science and scientists at Time 1 respectively significantly influenced belief in climate change, belief in anthropogenic climate change, concern about climate change, and satisfaction with New Zealand natural environment at Time 2. To estimate and identify optimum causal effects, we used super learner libraries, which conduct multiple machine learning algorithms (i.e., \`SL.glmnet\`, \`SL.ranger\`, and \`SL.xboost\`) and cross-validate the outputs. Lastly, as a sensitive analysis to assess the strengths of casual effects, we calculated E-values, which represent the extent to which identified causal associations can be removed by unmeasured confounding effects [@bulbulia_practical_2024; @vanderweele_outcome-wide_2020].
 
 ## Results
 
-Model 1. Trust in science + Median 
+### Trust in Science 
+
+
+For 'donations', the effect estimate is 0.132 [0.102, 0.161]. The E-value for this estimate is 1.507, with a lower bound of 1.426. At this lower bound, unmeasured confounders would need a minimum association strength with both the intervention sequence and outcome of 1.426 to negate the observed effect. Weaker associations would not overturn it. We infer **evidence for causality**.  On the data scale, this intervention represents a difference of **NZD `r diff_charity` per adult per year** in charitable giving compared with the zero attendance intervention.
+
+
+The effect estimate for 'hours volunteer' is 0.123 [0.09, 0.156]. The E-value for this estimate is 1.482, with a lower bound of 1.389. We infer **evidence for causality**. On the data scale, this intervention represents a difference of **NZD `r diff_volunteer` minutes** per adult per week in volunteering compared with the zero attendance intervention.
+
+Model 1.
+Trust in science + Median
 
 Belief: `r tab_science_median$estimate_lab[1]`
 
@@ -229,10 +258,7 @@ Concern: `r tab_science_median$estimate_lab[3]`
 
 Satsfaction with NZ environment: `r tab_science_median$estimate_lab[4]`
 
-
 See @fig-match_1
-
-
 
 ```{r}
 #| label: fig-match_1
@@ -270,7 +296,7 @@ figs_science_median
 
 ```
 
-Model 2.Trust in science + One-unit increase 
+Model 2.Trust in science + One-unit increase
 
 Belief: `r tab_science_oneunit$estimate_lab[1]`
 
@@ -328,7 +354,6 @@ Concern: `r tab_scientists_median$estimate_lab[3]`
 
 Satisfaction with NZ environment: `r tab_scientists_median$estimate_lab[4]`
 
-
 See @fig-match_3
 
 ```{r}
@@ -367,7 +392,6 @@ figs_scientists_median
 
 ```
 
-
 Model 4.Trust in scientists + One-unit increase
 
 Belief: `r tab_scientists_oneunit$estimate_lab[1]`
@@ -377,7 +401,6 @@ Cause: `r tab_scientists_oneunit$estimate_lab[2]`
 Concern: `r tab_scientists_oneunit$estimate_lab[3]`
 
 Satisfaction with NZ environment: `r tab_scientists_oneunit$estimate_lab[4]`
-
 
 See @fig-match_4
 

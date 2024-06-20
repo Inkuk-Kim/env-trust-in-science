@@ -1,0 +1,488 @@
+---
+title: "Trust in Science or Scientists Lead to Pro-environmental Attitudes"
+##abstract: |
+author: 
+  - name: Inkuk Kim
+    affiliation: Victoria University of Wellington, New Zealand
+    orcid_id: 01
+    email: inkuk.kim@vuw.ac.nz
+    corresponding: yes
+  - name: Chris G. Sibley
+    affiliation: School of Psychology, University of Auckland
+    orcid_id: 0000-0002-4064-8800
+  - name: Marc S. Wilson
+    affiliation: Victoria University of Wellington, New Zealand
+    orcid_id:
+  - name: Kumar Yogeeswaran
+    affiliation: University of Canterbury, New Zealand
+    orcid_id:
+  - name: Don Hine
+    affiliation: University of Canterbury, New Zealand
+    orcid_id:
+  - name: Joseph A. Bulbulia
+    affiliation: Victoria University of Wellington, New Zealand
+    orcid_id: 0000-0002-5861-2056
+    email: joseph.bulbulia@vuw.ac.nz
+keywords:
+  - Causal Inference
+  - Trust in Science
+  - Trust in Scientists
+  - Environmental Attitudes
+editor_options: 
+  chunk_output_type: console
+  markdown: 
+    wrap: sentence
+format:
+  pdf:
+    sanitise: true
+    keep-tex: true
+    link-citations: true
+    colorlinks: true
+    documentclass: article
+    classoption: [single column]
+    lof: false
+    lot: false
+    geometry:
+      - top=30mm
+      - left=20mm
+      - heightrounded
+date: last-modified
+execute:
+  echo: false
+  warning: false
+  include: true
+  eval: true
+##fontfamily: libertinus
+bibliography: C:\\Users\\kimin\\Documents\\env-trust-environment\\references.bib
+csl: C:\\Users\\kimin\\Documents\\env-trust-environment\\camb-a.csl
+---
+
+```{r}
+#| label: load-libraries
+#| echo: false
+#| include: false
+#| eval: true
+
+##if (!require(devtools, quietly = TRUE)) {
+##  install.packages("devtools")
+##  library(devtools)
+##}
+
+##devtools::install_github("go-bayes/margot")
+
+
+##source(
+##  "https://raw.githubusercontent.com/go-bayes/templates/main/functions/libs2.R"
+##)
+
+
+library(margot)
+library(ggplot2)
+library(tidyverse)
+library(gtsummary)
+
+library(tinytex)
+library(extrafont)
+library(tidyverse)
+library(kableExtra)
+
+loadfonts(device = "all")
+
+## Read in data from analysis 
+# imports
+push_mods <- fs::path_expand("C:\\Users\\kimin\\Documents\\env-trust-environment\\trust-science-median")
+
+
+tab_science_median <- margot::here_read("group_tab_envir")
+
+
+
+push_mods <- fs::path_expand("C:\\Users\\kimin\\Documents\\env-trust-environment\\trust-science-oneunit")
+
+
+tab_science_oneunit <- margot::here_read("group_tab_envir")
+
+
+
+push_mods <- fs::path_expand("C:\\Users\\kimin\\Documents\\env-trust-environment\\trust-scientists-median")
+
+
+tab_scientists_median <- margot::here_read("group_tab_envir")
+
+
+
+push_mods <- fs::path_expand("C:\\Users\\kimin\\Documents\\env-trust-environment\\trust-scientists-oneunit")
+
+
+tab_scientists_oneunit <- margot::here_read("group_tab_envir")
+
+
+```
+
+## Introduction
+
+Despite the scientific consensus on the existence of climate change and the urgency to take actions to mitigate climate change [@intergovernmentalpanelonclimatechange2021], there remain a significant portion of people who deny the reality of climate change and refuse to take pro-environmental actions [see @leiserowitz2021; @steg2018].
+According to a recent study, which interviewed approximately 130,000 individuals across 125 countries, 14% of respondents rejected the need to take actions to alleviate global warming and 11% of respondents disagreed with increasing the government's climate actions [@andre2024].
+One prominent factor contributing to the scepticism about climate change is the presence of uncertainty.
+Beside only a small portion of people may have directly experienced severe outcomes of climate change, there is uncertainty about when climate change will significantly affect our lives given that our climate actions do not change.
+Moreover, it is impossible for everyone to have expert knowledge on climate science.
+Considering the temporal distance in the adverse outcomes of climate change and the lack of knowledge in climate science, individuals' trust in both science and scientists might be crucial to cultivate their pro-environmentalism.
+In this research, we aimed to investigate the causal effects of trust in science and scientists on pro-environmental attitudes.
+
+Trusting science and scientists is important for individuals' perception of climate change.
+When there is uncertainty, people can make rational decisions by collecting and evaluating all relevant information.
+This cognitive process requires time and energy, so people tend to rely on relevant actors' opinions as a mental shortcut for an efficient decision-making [e.g., @sturgis_trust_2021; @vanboven2021]. Regarding climate issues, governments, political leaders, media, and climate scientists are considered as relevant actors. Among them, climate scientists are the most relevant and expert actors in terms of evaluating the reality of climate change. Therefore, perceived scientific consensus on climate change influence individuals' perception of environmental issues and promote individuals' environmental behaviours [@vanderlinden2019; @vanderlinden2015].
+According to the Gateway Belief Model [@vanderlinden2015a], perceived scientific consensus affects belief in climate change, worry about climate change, and belief in human causation, which in turn increase support for public action.
+However, the effects of perceived scientific consensus on climate change may be ineffective when people do not trust science and scientists.
+Thus, trust in science and scientists is more essential than perceived scientific consensus on climate change for individuals' pro-environmental attitudes and behaviours.
+
+Indeed, trust in science and scientists is positively associated with pro-environmentalism.In the meta-analysis conducted by @hornsey_meta-analyses_2016, the correlation between trust in scientists and climate change belief was significantly positive.
+The magnitude was above the medium effect (0.3) and higher than the correlations between climate change belief and objective, subjective knowledge, biosphere values, and experience of extreme weather.
+@cologna2020 also showed that trust in scientists is positively correlated with pro-environmental behaviours in a meta-analysis conducted across 51 studies.
+Moreover, @bogert2023 found the positive correlation between trust in science and anthropogenic climate change in a meta-analysis across 18 studies.
+However, these meta-analyses have a limitation that all the studies included in the meta-analyses are correlational studies.
+These correlational studies cannot establish causation and determine the directionality of the relationships between trust in science and scientists and pro-environmental outcomes.
+Experimental research design can be a solution to claim the causation, but it is difficult to manipulate trust in science and scientists.
+
+Causal inference is an innovative method in Psychology and enables to investigate causal relationships.
+the causal inference assumptions (i.e., causal consistency, positivity, and exchangeability)
+confounding control
+
+\[Need to write this section\]
+
+### Present Study
+
+We employed modified treatment policies, a causal inference method, to investigate whether enhancing trust in science and scientists promote individuals' environmental attitudes, specifically beliefs in climate change and anthropogenic climate change, and concern for climate change, and the satisfaction with New Zealand natural environment.
+
+### Causal intervention
+
+We identified two treatments on both trust in science and scientists and aimed to contrast with null conditions.
+
+1.  High trust in science or scientists
+One intervention was to shift trust in science or scientists using median as a criterion.
+If an individuals' trust in science or scientists is below median, shift to median; otherwise, maintain their trust in science or scientists.
+
+2. Enhancing trust in science or scientists by one-unit
+The other intervention was to increase trust in science or scientists a bit.
+If an individuals' trust in science or scientists is below maximum, increase by one-unit in the response scales up to maximum; otherwise, maintain their trust in science or scientists.
+
+3. No treatment in trust in science or scientists (Null)
+We did not shift in this condition. We computed expected mean values using observed values of either trust in science or scientists.
+
+
+### Causal Contrasts
+
+In the present study, we investigated four causal contrasts.
+
+**Target Contrast A: High trust in science vs. no treatment in trust in science**\
+How enhancing trust in science among those who are low in trust in science affect the environmental attitudes? We examined the average difference in the environmental attitudes between enhancing trust in science among individuals who are below median up to median and null change.
+
+**Target Contrast B: High trust in scientists vs. no treatment in trust in scientists**\
+How enhancing trust in scientists among those who are low in trust in scientists affect the environmental attitudes? We examined the average difference in the environmental attitudes between enhancing trust in scientists among individuals who are below median up to median and null change.
+
+**Target Contrast C: Enhancing trust in science by one-unit vs. no treatment in trust in science**\
+How enhancing trust in science a bit among all respondents affect the environmental attitudes? We examined the average difference in the environmental attitudes between enhancing trust in science one-unit in the response scales among all respondents and null change.
+
+**Target Contrast D: Enhancing trust in scientists by one-unit vs. no treatment in trust in scientists**\
+How enhancing trust in scientists a bit among all respondents affect the environmental attitudes? We examined the average difference in the environmental attitudes between enhancing trust in scientists one-unit in the response scales among all respondents and null change.
+
+## Method
+
+### Sample
+
+We used data sets collected at three different periods from 2019 to 2022 (Time 0: 2019 to 2020, Time 1: 2020 to 2021, Time 2: 2021 to 2022) in the New Zealand Attitudes and Value Study (NZAVS), conducted across New Zealand since 2009.
+Among the sample during the period from 2019 to 2022, we will only select samples which do not have any missing values in exposures (i.e., trust in science and scientists) at Times 0 and 1.
+
+### Measures
+
+#### Exposures
+
+##### Trust in Science
+
+Trust in science was measured by one item from @hartman2017 .
+Respondents were asked to indicate the extent to which they agree with the statement that "our society places too much emphasis on science".The responses ranged from 1 (Strongly Disagree) to 7 (Strongly Agree).We revered the values so that higher values indicate greater trust in science.
+
+##### Trust in Scientists
+
+Respondents indicated how strongly they agree with the statement, "I have a high degree of confidence in the scientific community", one item from @nisbet2015.
+The responses ranged from 1 (Strongly Disagree) to 7 (Strongly Agree).
+
+#### Outcomes
+
+##### Climate Change Attitudes
+
+Three items were used to assess respondents' climate change attitudes.
+Belief in climate change and belief in anthropogenic climate were measured by two items from @sibley2013Sibley : (1) "Climate change is real" and (2) "Climate change is caused by humans", respectively.
+Concern for climate change was measured by one item from @milfont2022 : (3) "I am deeply concerned about climate change.".
+Respondents indicated the extent to which they agree with these items (1 = Strongly Disagree to 7 = Strongly Agree).
+
+##### Satisfaction with NZ Environment
+
+Satisfaction with New Zealand natural environment was assessed by one item adapted from the International Wellbeing Index @tiliouine2006 .
+Respondents were asked to indicate their current satisfaction with the quality of New Zealand's natural environment (1 = Completely dissatisfied to 10 = Completely satisfied).
+
+#### Baseline Variables
+
+We will use demographics, hours of spending, support received, psychological symptoms, personality measures as baseline variables along with the exposures and outcome variables.
+See Appendix C of @bulbulia_practical_2024 for the detailed information about the measures listed below.
+
+##### Demographics
+
+Respondents indicated gender, age, education level, ethnicity, sample origin, NZ deprivation index, New Zealand Socio-economic Index 13, NZ-Born, disability, household income, living with partner, political orientation, living in urban, and number of children.
+
+##### Hours of Spending
+
+Respondents indicated hours of spending with children, hours of work, hours of housework, and hours of exercise.
+
+##### Support Received
+
+Respondents indicated the extent to which they received social support.
+
+##### Psychological Symptoms
+
+Kessler's depression, Kessler's anxiety, and alert level were used to measure respondents' psychological symptoms.Personality.
+Mini-IPIP6 (agreeableness, conscientiousness, extraversion, honesty-humility, neuroticism) and modesty were measured to assess respondents' personality.
+
+### Analytic Approach
+
+We followed the practical guideline of @bulbulia_practical_2024 to conduct the causal inference method in this three-wave longitudinal study and used R[@r_core_team_r_2024] for all the analysis. First, we investigated the transitions of both trust in science and scientists from Time 1 to Time 2 to check positivity assumption. Also, we investigated the scopes of interventions (e.i., how do the interventions change trust in science and scientists). We then conducted the longitudinal modified treatment policies @diaz_nonparametric_2023 and outcome-wide analyses @vanderweele_outcome-wide_2020 to investigate whether trust in science and scientists respectively affect pro-environmental attitudes, using Targeted Maximum Likelihood Estimation (TMLE) as a estimator in the lmtp package [@williams_lmtp_2023]. To adjust for confounding effects on the relationships between exposures and outcomes, we included the baseline variables, exposures, and outcomes at Time 0 as baselines in the TMLE function. Attrition at Time 1 was accounted for weighting the sample and attrition at Time 2 was addressed by censoring input in the TMLE function.
+At Time 1, we applied two interventions into each exposure (i.e., trust in science and trust in scientists): 1. shift those below median (6) to median (6), otherwise do not shift; 2. shift 1 point on the response scale (1-7) up to maximum of 7.
+We assessed whether the changes in trust in science and scientists at Time 1 respectively significantly influenced belief in climate change, belief in anthropogenic climate change, concern about climate change, and satisfaction with New Zealand natural environment at Time 2.
+To estimate and identify optimum causal effects, we used super learner libraries , which conduct multiple machine learning algorithms (\`SL.glmnet\`, \`SL.ranger\`, and \`SL.xboost\`) and cross-validate the outputs.
+Lastly, as a sensitive analysis to assess the strengths of casual effects, we calculated E-values, which represent the extent to which identified causal associations can be removed by unmeasured confounding effects [@bulbulia_practical_2024; @vanderweele_outcome-wide_2020].
+
+
+## Results
+
+transition table
+scope of intervention
+
+### Shifting those below median to median in Trust in Science
+
+For ‘beliefs in climate change’, the effect estimate is `r tab_science_median[1,2]` [`r tab_science_median[1,3]`, `r tab_science_median[1,4]`]. The E-value for this estimate is `r tab_science_median[1,5]`, with
+a lower bound of `r tab_science_median[1,6]`. At this lower bound, unmeasured confounders would need a minimum association
+strength with both the intervention sequence and outcome of `r tab_science_median[1,6]` to negate the observed effect. Weaker
+confounding would not overturn it. We infer evidence for causality.
+
+For ‘beliefs in anthropogenic climate change’, the effect estimate is `r tab_science_median[2,2]` [`r tab_science_median[2,3]`, `r tab_science_median[2,4]`]. The E-value for this estimate is `r tab_science_median[2,5]`, with
+a lower bound of `r tab_science_median[2,6]`. We infer evidence for causality.
+
+For ‘concern for climate change’, the effect estimate is `r tab_science_median[3,2]` [`r tab_science_median[3,3]`, `r tab_science_median[3,4]`]. The E-value for this estimate is `r tab_science_median[3,5]`, with
+a lower bound of `r tab_science_median[3,6]`. We infer evidence for causality.
+
+For ‘satisfaction with New Zealand natural environment’, the effect estimate is `r tab_science_median[4,2]` [`r tab_science_median[4,3]`, `r tab_science_median[4,4]`]. The E-value for this estimate is `r tab_science_median[4,5]`, with
+a lower bound of `r tab_science_median[4,6]`. We infer no evidence for causality.
+
+
+See @fig-match_1
+
+
+
+```{r}
+#| label: fig-match_1
+#| fig-cap: "Figure Trust in science: shift those below median to median, otherwise do not shift: N = 42,118"
+#| eval: true
+#| include: true
+#| echo: false
+#| fig-width: 10
+#| fig-height: 10
+
+push_mods <- fs::path_expand("C:\\Users\\kimin\\Documents\\env-trust-environment\\trust-science-median")
+group_tab_envir <- margot::here_read("group_tab_envir")
+
+group_tab_envir <- group_tab_envir[rev(rownames(group_tab_envir)),]
+
+figs_science_median <- margot_plot(
+  group_tab_envir,
+  type = "RD",
+  title = "Environmental attitudes",
+  subtitle = "Trust in science: shift those below median to median, otherwise do not shift: N = 42,118",
+  estimate_scale = 1,
+  base_size = 12,
+  text_size = 3.0,
+  point_size = .5,
+  title_size = 15,
+  subtitle_size = 11,
+  legend_text_size = 8,
+  legend_title_size = 10,
+  x_offset = -1,
+  x_lim_lo = -1,
+  x_lim_hi =  .5
+)
+
+figs_science_median
+
+```
+
+
+
+### Increasing one point in Trust in Science
+
+For ‘beliefs in climate change’, the effect estimate is `r tab_science_oneunit[1,2]` [`r tab_science_oneunit[1,3]`, `r tab_science_oneunit[1,4]`]. The E-value for this estimate is `r tab_science_oneunit[1,5]`, with
+a lower bound of `r tab_science_oneunit[1,6]`.We infer evidence for causality.
+
+For ‘beliefs in anthropogenic climate change’, the effect estimate is `r tab_science_oneunit[2,2]` [`r tab_science_oneunit[2,3]`, `r tab_science_oneunit[2,4]`]. The E-value for this estimate is `r tab_science_oneunit[2,5]`, with
+a lower bound of `r tab_science_oneunit[2,6]`. We infer evidence for causality.
+
+For ‘concern for climate change’, the effect estimate is `r tab_science_oneunit[3,2]` [`r tab_science_oneunit[3,3]`, `r tab_science_oneunit[3,4]`]. The E-value for this estimate is `r tab_science_oneunit[3,5]`, with
+a lower bound of `r tab_science_oneunit[3,6]`. We infer evidence for causality.
+
+For ‘satisfaction with New Zealand natural environment’, the effect estimate is `r tab_science_oneunit[4,2]` [`r tab_science_oneunit[4,3]`, `r tab_science_oneunit[4,4]`]. The E-value for this estimate is `r tab_science_oneunit[4,5]`, with
+a lower bound of `r tab_science_oneunit[4,6]`. We infer no evidence for causality.
+
+
+
+See @fig-match_2
+
+```{r}
+#| label: fig-match_2
+#| fig-cap: "Figure  trust in science + increase one unit: N = 42,118"
+#| eval: true
+#| include: true
+#| echo: false
+#| fig-width: 10
+#| fig-height: 10
+
+push_mods <- fs::path_expand("C:\\Users\\kimin\\Documents\\env-trust-environment\\trust-science-oneunit")
+group_tab_envir <- margot::here_read("group_tab_envir")
+
+group_tab_envir <- group_tab_envir[rev(rownames(group_tab_envir)),]
+
+figs_science_oneunit <- margot_plot(
+  group_tab_envir,
+  type = "RD",
+  title = "Environmental attitudes",
+  subtitle = "Trust in science: increase one unit until the maximum: N = 42,118",
+  estimate_scale = 1,
+  base_size = 12,
+  text_size = 3.0,
+  point_size = .5,
+  title_size = 15,
+  subtitle_size = 11,
+  legend_text_size = 8,
+  legend_title_size = 10,
+  x_offset = -1,
+  x_lim_lo = -1,
+  x_lim_hi =  .5
+)
+
+figs_science_oneunit
+
+grouph_density_of_exposure_up <- margot::here_read("graph_density_of_exposure_up")
+grouph_density_of_exposure_up 
+
+```
+
+### Shifting those below median to median in Trust in Scientists
+
+For ‘beliefs in climate change’, the effect estimate is `r tab_scientists_median[1,2]` [`r tab_scientists_median[1,3]`, `r tab_scientists_median[1,4]`]. The E-value for this estimate is `r tab_scientists_median[1,5]`, with
+a lower bound of `r tab_scientists_median[1,6]`. We infer evidence for causality.
+
+For ‘beliefs in anthropogenic climate change’, the effect estimate is `r tab_scientists_median[2,2]` [`r tab_scientists_median[2,3]`, `r tab_scientists_median[2,4]`]. The E-value for this estimate is `r tab_scientists_median[2,5]`, with
+a lower bound of `r tab_scientists_median[2,6]`. We infer evidence for causality.
+
+For ‘concern for climate change’, the effect estimate is `r tab_scientists_median[3,2]` [`r tab_scientists_median[3,3]`, `r tab_scientists_median[3,4]`]. The E-value for this estimate is `r tab_scientists_median[3,5]`, with
+a lower bound of `r tab_scientists_median[3,6]`. We infer evidence for causality.
+
+For ‘satisfaction with New Zealand natural environment’, the effect estimate is `r tab_scientists_median[4,2]` [`r tab_scientists_median[4,3]`, `r tab_scientists_median[4,4]`]. The E-value for this estimate is `r tab_scientists_median[4,5]`, with
+a lower bound of `r tab_scientists_median[4,6]`. We infer no evidence for causality.
+
+
+See @fig-match_3
+
+```{r}
+#| label: fig-match_3
+#| fig-cap: "Figure Trust in scientists: shift those below median to median, otherwise do not shift: N = 41,424"
+#| eval: true
+#| include: true
+#| echo: false
+#| fig-width: 10
+#| fig-height: 10
+
+push_mods <- fs::path_expand("C:\\Users\\kimin\\Documents\\env-trust-environment\\trust-scientists-median")
+group_tab_envir <- margot::here_read("group_tab_envir")
+
+group_tab_envir <- group_tab_envir[rev(rownames(group_tab_envir)),]
+
+figs_scientists_median <- margot_plot(
+  group_tab_envir,
+  type = "RD",
+  title = "Environmental attitudes",
+  subtitle = "Trust in scientists: shift those below median to median, otherwise do not shift: N = 41,424",
+  estimate_scale = 1,
+  base_size = 12,
+  text_size = 3.0,
+  point_size = .5,
+  title_size = 15,
+  subtitle_size = 11,
+  legend_text_size = 8,
+  legend_title_size = 10,
+  x_offset = -1,
+  x_lim_lo = -1,
+  x_lim_hi =  .5
+)
+
+figs_scientists_median
+
+```
+
+### Increasing one point in Trust in Scientists
+
+For ‘beliefs in climate change’, the effect estimate is `r tab_scientists_oneunit[1,2]` [`r tab_scientists_oneunit[1,3]`, `r tab_scientists_oneunit[1,4]`]. The E-value for this estimate is `r tab_scientists_oneunit[1,5]`, with
+a lower bound of `r tab_scientists_oneunit[1,6]`.We infer evidence for causality.
+
+For ‘beliefs in anthropogenic climate change’, the effect estimate is `r tab_scientists_oneunit[2,2]` [`r tab_scientists_oneunit[2,3]`, `r tab_scientists_oneunit[2,4]`]. The E-value for this estimate is `r tab_scientists_oneunit[2,5]`, with
+a lower bound of `r tab_scientists_oneunit[2,6]`. We infer evidence for causality.
+
+For ‘concern for climate change’, the effect estimate is `r tab_scientists_oneunit[3,2]` [`r tab_scientists_oneunit[3,3]`, `r tab_scientists_oneunit[3,4]`]. The E-value for this estimate is `r tab_scientists_oneunit[3,5]`, with
+a lower bound of `r tab_scientists_oneunit[3,6]`. We infer evidence for causality.
+
+For ‘satisfaction with New Zealand natural environment’, the effect estimate is `r tab_scientists_oneunit[4,2]` [`r tab_scientists_oneunit[4,3]`, `r tab_scientists_oneunit[4,4]`]. The E-value for this estimate is `r tab_scientists_oneunit[4,5]`, with
+a lower bound of `r tab_scientists_oneunit[4,6]`. We infer no evidence for causality.
+
+
+See @fig-match_4
+
+```{r}
+#| label: fig-match_4
+#| fig-cap: "Figure  trust in scientists + increase one unit: N = 41,424"
+#| eval: true
+#| include: true
+#| echo: false
+#| fig-width: 10
+#| fig-height: 10
+
+push_mods <- fs::path_expand("C:\\Users\\kimin\\Documents\\env-trust-environment\\trust-scientists-oneunit")
+group_tab_envir <- margot::here_read("group_tab_envir")
+
+group_tab_envir <- group_tab_envir[rev(rownames(group_tab_envir)),]
+
+figs_scientists_oneunit <- margot_plot(
+  group_tab_envir,
+  type = "RD",
+  title = "Environmental attitudes",
+  subtitle = "Trust in scientists: increase one unit until the maximum: N = 41,424",
+  estimate_scale = 1,
+  base_size = 12,
+  text_size = 3.0,
+  point_size = .5,
+  title_size = 15,
+  subtitle_size = 11,
+  legend_text_size = 8,
+  legend_title_size = 10,
+  x_offset = -1,
+  x_lim_lo = -1,
+  x_lim_hi =  .5
+)
+
+figs_scientists_oneunit
+
+```
+
+## Discussion
+
+\`\`\`
+
+{{< pagebreak >}}
+
+## References {.appendix}
